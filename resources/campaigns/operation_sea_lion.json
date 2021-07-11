@@ -4,8 +4,8 @@
   "authors": "Khopa",
   "recommended_player_faction": "Germany 1940",
   "recommended_enemy_faction": "Allies 1940",
-  "description": "<p>The Battle of Dunkirk (French: Bataille de Dunkerque) was fought around the French port of Dunkirk (Dunkerque) during the Second World War, between the Allies and Nazi Germany. As the Allies were losing the Battle of France on the Western Front, the Battle of Dunkirk was the defence and evacuation of British and other Allied forces to Britain from 26 May to 4 June 1940..</p>",
+  "description": "<p>The hypothetical invasion of britain, 'operation sealion' never happened as the german air forces never gained the superiority and the mighty british fleet was always present. In this campaign you can either try to conquer england, as you fight your way up north or prevent the success of the Wehrmacht as the british fight back the invaders.</p>",
   "version": 7.0,
   "miz": "operation_sea_lion.miz",
-  "performance": 1
+  "performance": 2
 }
