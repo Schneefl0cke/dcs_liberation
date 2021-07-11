@@ -1,8 +1,9 @@
 import random
 import time
-from typing import List, Any
+from typing import List
 
 from dcs.country import Country
+from dcs.unittype import UnitType as DcsUnitType
 
 from game.dcs.aircrafttype import AircraftType
 from game.dcs.unittype import UnitType
@@ -296,7 +297,7 @@ class NameGenerator:
 
     @classmethod
     def next_unit_name(
-        cls, country: Country, parent_base_id: int, unit_type: UnitType[Any]
+        cls, country: Country, parent_base_id: int, unit_type: UnitType[DcsUnitType]
     ) -> str:
         cls.number += 1
         return "unit|{}|{}|{}|{}|".format(
@@ -305,7 +306,7 @@ class NameGenerator:
 
     @classmethod
     def next_infantry_name(
-        cls, country: Country, parent_base_id: int, unit_type: UnitType[Any]
+        cls, country: Country, parent_base_id: int, unit_type: UnitType[DcsUnitType]
     ) -> str:
         cls.infantry_number += 1
         return "infantry|{}|{}|{}|{}|".format(

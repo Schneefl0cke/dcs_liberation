@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from dcs import Point
 
 
@@ -9,7 +7,7 @@ class PointWithHeading(Point):
         self.heading = 0
 
     @staticmethod
-    def from_point(point: Point, heading: int) -> PointWithHeading:
+    def from_point(point: Point, heading: int) -> Point:
         p = PointWithHeading()
         p.x = point.x
         p.y = point.y

@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from collections import Sequence
 from typing import Iterator, TYPE_CHECKING, List, Union
 
 from dcs.mapping import Point
@@ -46,5 +45,5 @@ class MissionTarget:
             ]
 
     @property
-    def strike_targets(self) -> Sequence[Union[MissionTarget, Unit]]:
+    def strike_targets(self) -> List[Union[MissionTarget, Unit]]:
         return []

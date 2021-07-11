@@ -23,7 +23,7 @@ from dcs.task import (
     SetInvisibleCommand,
 )
 from dcs.triggers import Event, TriggerOnce
-from dcs.unit import Vehicle, Skill
+from dcs.unit import Vehicle
 from dcs.unitgroup import VehicleGroup
 
 from game.data.groundunitclass import GroundUnitClass
@@ -359,6 +359,7 @@ class GroundConflictGenerator:
             self.mission.triggerrules.triggers.append(artillery_fallback)
 
             for u in dcs_group.units:
+                u.initial = True
                 u.heading = forward_heading + random.randint(-5, 5)
             return True
         return False
@@ -567,10 +568,10 @@ class GroundConflictGenerator:
         )
 
         # Fallback task
-        task = ControlledTask(GoToWaypoint(to_index=len(dcs_group.points)))
-        task.enabled = False
+        fallback = ControlledTask(GoToWaypoint(to_index=len(dcs_group.points)))
+        fallback.enabled = False
         dcs_group.add_trigger_action(Hold())
-        dcs_group.add_trigger_action(task)
+        dcs_group.add_trigger_action(fallback)
 
         # Create trigger
         fallback = TriggerOnce(Event.NoEvent, "Morale manager #" + str(dcs_group.id))
@@ -631,7 +632,7 @@ class GroundConflictGenerator:
         @param enemy_groups Potential enemy groups
         @param n number of nearby groups to take
         """
-        targets = []  # type: List[VehicleGroup]
+        targets = []  # type: List[Optional[VehicleGroup]]
         sorted_list = sorted(
             enemy_groups,
             key=lambda group: player_group.points[0].position.distance_to_point(
@@ -713,7 +714,7 @@ class GroundConflictGenerator:
         distance_from_frontline: int,
         heading: int,
         spawn_heading: int,
-    ) -> Optional[Point]:
+    ) -> Point:
         shifted = conflict_position.point_from_heading(
             heading, random.randint(0, combat_width)
         )
@@ -763,9 +764,9 @@ class GroundConflictGenerator:
                     heading=opposite_heading(spawn_heading),
                 )
                 if is_player:
-                    g.set_skill(Skill(self.game.settings.player_skill))
+                    g.set_skill(self.game.settings.player_skill)
                 else:
-                    g.set_skill(Skill(self.game.settings.enemy_vehicle_skill))
+                    g.set_skill(self.game.settings.enemy_vehicle_skill)
                 positioned_groups.append((g, group))
 
                 if group.role in [CombatGroupRole.APC, CombatGroupRole.IFV]:

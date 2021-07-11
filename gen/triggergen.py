@@ -83,12 +83,7 @@ class TriggersGenerator:
 
         for cp in self.game.theater.controlpoints:
             if isinstance(cp, Airfield):
-                cp_airport = self.mission.terrain.airport_by_id(cp.airport.id)
-                if cp_airport is None:
-                    raise RuntimeError(
-                        f"Could not find {cp.airport.name} in the mission"
-                    )
-                cp_airport.set_coalition(
+                self.mission.terrain.airport_by_id(cp.at.id).set_coalition(
                     cp.captured and player_coalition or enemy_coalition
                 )
 
